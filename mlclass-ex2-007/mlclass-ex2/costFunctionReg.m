@@ -9,6 +9,7 @@ m = length(y); % number of training examples
 
 % You need to return the following variables correctly 
 J = 0;
+n = size(theta)(1);
 grad = zeros(size(theta));
 
 % ====================== YOUR CODE HERE ======================
@@ -17,11 +18,14 @@ grad = zeros(size(theta));
 %               Compute the partial derivatives and set grad to the partial
 %               derivatives of the cost w.r.t. each parameter in theta
 
+for i=1:m
+  sigmoidThetaX = sigmoid(theta' * X(i,:)');
+  J +=  (y(i) - 1) * log(1 - sigmoidThetaX) - y(i) * log(sigmoidThetaX);
+end
 
+J += (lambda / 2) * theta(2:n)' * theta(2:n);
 
-
-
+J /= m;
 
 % =============================================================
-
 end
