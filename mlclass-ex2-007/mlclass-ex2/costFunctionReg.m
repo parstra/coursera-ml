@@ -11,6 +11,8 @@ m = length(y); % number of training examples
 J = 0;
 n = size(theta)(1);
 grad = zeros(size(theta));
+funky_theta = theta;
+funky_theta(1) = 0;
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta.
@@ -21,11 +23,16 @@ grad = zeros(size(theta));
 for i=1:m
   sigmoidThetaX = sigmoid(theta' * X(i,:)');
   J +=  (y(i) - 1) * log(1 - sigmoidThetaX) - y(i) * log(sigmoidThetaX);
+  grad += (sigmoidThetaX - y(i)) * X(i, :)';
 end
 
 J += (lambda / 2) * theta(2:n)' * theta(2:n);
-
 J /= m;
 
+grad += lambda * funky_theta;
+grad /= m;
+
+
 % =============================================================
+
 end
