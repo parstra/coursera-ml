@@ -36,13 +36,18 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+funky_theta = theta;
+funky_theta(1) = 0;
 
+sigmoidThetaXMat = sigmoid(theta' * X')';
 
+J =  (y .- 1)' * log(1 - sigmoidThetaXMat) - y' * log(sigmoidThetaXMat);
+grad = X' * (sigmoidThetaXMat - y) + lambda * funky_theta;
 
+J += (lambda / 2) * funky_theta' * funky_theta;
+J /= m;
 
-
-
-
+grad /= m;
 
 
 % =============================================================
