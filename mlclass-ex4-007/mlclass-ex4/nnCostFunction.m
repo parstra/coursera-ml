@@ -69,6 +69,7 @@ for i=1:m
   yk(y(i)) = 1;
   J += (yk - 1)' * log(1 - a3) - yk' * log(a3);
 end
+J += lambda * ( sum(sum(Theta1(:,2:end) .** 2)) + sum(sum(Theta2(:,2:end) .** 2))) / 2;
 
 J /= m;
 
