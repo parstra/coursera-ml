@@ -79,6 +79,9 @@ for i=1:m
 end
 J += lambda * ( sum(sum(Theta1(:,2:end) .** 2)) + sum(sum(Theta2(:,2:end) .** 2))) / 2;
 
+Theta1_grad += lambda * [zeros(hidden_layer_size, 1), Theta1(:, 2:end)];
+Theta2_grad += lambda * [zeros(num_labels, 1), Theta2(:, 2:end)];
+
 J /= m;
 Theta1_grad /= m;
 Theta2_grad /= m;
